@@ -1,0 +1,15 @@
+.page {
+  background-size: cover;
+  background-image: url("https://cdn.pixabay.com/photo/2018/11/17/18/58/shelby-3821719_1280.jpg");
+  width: 100%;
+  height: 100vh;
+}
+.header {
+  color: rgba(255, 255, 255, 0.555);
+  box-shadow: 1px 9px 15px 0 rgba(241, 240, 240, 0.2);
+  text-align: center;
+  padding-top: 50px;
+  width: 300px;
+  margin: 0 auto;
+  font-size: 40px;
+}
