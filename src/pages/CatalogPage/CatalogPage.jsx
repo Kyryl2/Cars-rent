@@ -1,5 +1,13 @@
+import CatalogList from "../../components/CatalogList/CatalogList";
+import FilterBar from "../../components/FilterBar/FilterBar";
+
 const CatalogPage = () => {
-  return <div>CatalogPage</div>;
+  return (
+    <>
+      <FilterBar />
+      <CatalogList />
+    </>
+  );
 };
 
 export default CatalogPage;
