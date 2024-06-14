@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import s from "./Modal.module.css";
-const Modal = ({ children, title = "Default modal", onClose }) => {
+const Modal = ({ children, onClose }) => {
   const handleBackDropClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -23,10 +23,6 @@ const Modal = ({ children, title = "Default modal", onClose }) => {
   return (
     <div className={s.wrapper} onClick={handleBackDropClick}>
       <div className={s.content}>
-        <>
-          <h1>{title}</h1>
-          <hr />
-        </>
         <button className={s.closeBtn} onClick={onClose}>
           ×
         </button>
