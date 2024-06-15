@@ -8,7 +8,7 @@ export const module = {
           loader: "file-loader",
           options: {
             name: "[name].[ext]",
-            outputPath: "images/", // Директорія, куди будуть збережені файли
+            outputPath: "src/components/icon.svg", // Директорія, куди будуть збережені файли
           },
         },
       ],
