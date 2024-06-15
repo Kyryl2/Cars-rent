@@ -10,7 +10,7 @@ export const fetchCars = createAsyncThunk(
   async (page, thunkAPI) => {
     try {
       const response = await backend.get("adverts", {
-        params: { page: page, limit: 20 },
+        params: { page: page, limit: 12 },
       });
 
       return response.data;
@@ -19,15 +19,15 @@ export const fetchCars = createAsyncThunk(
     }
   }
 );
-export const fetchAllCars = createAsyncThunk(
-  "cars/fetchAll",
-  async (_, thunkAPI) => {
-    try {
-      const response = await backend.get("adverts");
+// export const fetchAllCars = createAsyncThunk(
+//   "cars/fetchAll",
+//   async (_, thunkAPI) => {
+//     try {
+//       const response = await backend.get("adverts");
 
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );

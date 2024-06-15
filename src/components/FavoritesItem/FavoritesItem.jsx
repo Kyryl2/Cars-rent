@@ -1,49 +1,42 @@
-import { useState } from "react";
-import Modal from "../Modal/Modal";
-import css from "./CatalogItem.module.css";
-import Icon from "../Icon/Icon";
 import clsx from "clsx";
-import { useDispatch, useSelector } from "react-redux";
-import { addCars, deleteCars } from "../../redux/catalog/slice";
-import { selectFavorites } from "../../redux/catalog/selectors";
+import Icon from "../Icon/Icon";
+import { deleteCars } from "../../redux/catalog/slice";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import css from "./FavoritesItem.module.css";
+import Modal from "../Modal/Modal";
 
-const CatalogItem = ({ car }) => {
+const FavoritesItem = ({ car }) => {
   const dispatch = useDispatch();
-  const favorites = useSelector(selectFavorites);
+  
 
   const [isOpen, setIsOpen] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(
-    favorites.some((item) => item.id === car.id)
-  );
-
+  const [isAdd, setIsAdd] = useState(true);
   const handleOpenModal = () => {
     setIsOpen(true);
   };
-
   const handleCloseModal = () => {
     setIsOpen(false);
   };
-
-  const addFavorites = (car) => {
-    if (isFavorite) {
-      dispatch(deleteCars(car.id));
-    } else {
-      dispatch(addCars(car));
-    }
-    setIsFavorite(!isFavorite);
+  const deleteFavorites = (car) => {
+    setIsAdd(!isAdd);
+    dispatch(deleteCars(car));
+   
   };
-
   return (
     <>
       <li key={car.id} className={css.item}>
         <div className={css.wrapper}>
           <img className={css.img} src={car.img} alt="car" />
-          <button className={css.btnIcon} onClick={() => addFavorites(car)}>
+          <button
+            className={css.btnIcon}
+            onClick={() => deleteFavorites(car.id)}
+          >
             <Icon
               id="icon-heart"
               width={18}
               height={18}
-              className={clsx(css.icon, isFavorite && css.iconActive)}
+              className={clsx(css.icon, isAdd && css.iconActive)}
             />
           </button>
         </div>
@@ -125,4 +118,4 @@ const CatalogItem = ({ car }) => {
   );
 };
 
-export default CatalogItem;
+export default FavoritesItem;

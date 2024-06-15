@@ -8,3 +8,17 @@
   width: 1184px;
   margin: 0 auto;
 }
+.loadMoreButton {
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: #3470ff;
+  background-color: inherit;
+  border: none;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+}

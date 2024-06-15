@@ -6,12 +6,12 @@
   font-weight: 600;
   text-decoration: none;
   &:hover {
-    color: rgb(132, 127, 173);
+    color: rgb(226, 213, 25);
   }
 }
 
 .active {
-  color: rgb(146, 58, 58);
+  color: rgb(51, 53, 206);
 }
 .header {
   border-bottom: 2px;

@@ -3,19 +3,15 @@ import CatalogPage from "./pages/CatalogPage/CatalogPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import HomePage from "./pages/HomePage/HomePage";
 import Header from "./components/Header/Header";
-import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { fetchAllCars } from "./redux/operations";
+import { fetchCars } from "./redux/catalog/operations";
+import { useDispatch } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    const fetcData = () => {
-      dispatch(fetchAllCars());
-    };
-
-    fetcData(), [];
-  });
+    dispatch(fetchCars(1));
+  }, []);
   return (
     <>
       <Header />
