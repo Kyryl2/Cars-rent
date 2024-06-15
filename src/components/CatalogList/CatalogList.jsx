@@ -7,11 +7,15 @@ import css from "./CatalogList.module.css";
 import { Hearts } from "react-loader-spinner";
 
 const CatalogList = () => {
-  // Ініціалізація page з localStorage або значенням 2, якщо localStorage пустий
   const [page, setPage] = useState(() => {
     const savedPage = localStorage.getItem("page");
     return savedPage ? Number(savedPage) : 1;
   });
+
+  const [selectedMake, setSelectedMake] = useState("");
+  const [selectedPriceRange, setSelectedPriceRange] = useState([0, 1000]);
+  const [mileageRange, setMileageRange] = useState([0, 10000]);
+  const [filteredCars, setFilteredCars] = useState([]);
 
   const dispatch = useDispatch();
   const cars = useSelector(selectCars);
@@ -44,8 +48,100 @@ const CatalogList = () => {
     localStorage.setItem("page", page);
   }, [page]);
 
+  const handleMakeChange = (e) => {
+    setSelectedMake(e.target.value);
+  };
+
+  const handlePriceRangeChange = (e) => {
+    const [min, max] = e.target.value.split("-").map(Number);
+    setSelectedPriceRange([min, max]);
+  };
+
+  const handleMileageRangeChange = (e) => {
+    const { value, dataset } = e.target;
+    setMileageRange((prev) => {
+      const newRange = [...prev];
+      newRange[dataset.index] = Number(value);
+      return newRange;
+    });
+  };
+
+  const handleSearch = () => {
+    const filtered = cars.filter((car) => {
+      const carPrice = parseInt(car.rentalPrice.replace("$", ""), 10);
+      return (
+        (!selectedMake || car.make === selectedMake) &&
+        carPrice >= selectedPriceRange[0] &&
+        carPrice <= selectedPriceRange[1] &&
+        car.mileage >= mileageRange[0] &&
+        car.mileage <= mileageRange[1]
+      );
+    });
+    setFilteredCars(filtered);
+  };
+
+  const uniqueMakes = [...new Set(cars?.map((car) => car.make))];
+
   return (
     <>
+      <div className={css.filters}>
+        <div className={css.lable}>
+          <label>Car brand</label>
+          <select value={selectedMake} onChange={handleMakeChange}>
+            <option value="">All Makes</option>
+            {uniqueMakes.map((make) => (
+              <option key={make} value={make}>
+                {make}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className={css.priceFilter}>
+          <label>Price/ 1 hour</label>
+          <select onChange={handlePriceRangeChange}>
+            <option value="">To $</option>
+            <option value="0-1000">$All</option>
+            <option value="0-10">$0 - $10</option>
+            <option value="10-20">$10 - $20</option>
+            <option value="20-30">$20 - $30</option>
+            <option value="30-40">$30 - $40</option>
+            <option value="40-50">$40 - $50</option>
+            <option value="50-60">$50 - $60</option>
+            <option value="60-70">$60 - $70</option>
+            <option value="70-80">$70 - $80</option>
+            <option value="80-90">$80 - $90</option>
+            <option value="90-100">$90 - $100</option>
+            <option value="100-1000">$100+</option>
+          </select>
+        </div>
+
+        <div className={css.mileageFilter}>
+          <label>Mileage Range:</label>
+          <input
+            type="number"
+            data-index="0"
+            value={mileageRange[0]}
+            onChange={handleMileageRangeChange}
+            min="0"
+            step="1000"
+          />
+          <span> - </span>
+          <input
+            type="number"
+            data-index="1"
+            value={mileageRange[1]}
+            onChange={handleMileageRangeChange}
+            min="0"
+            step="1000"
+          />
+        </div>
+
+        <button onClick={handleSearch} className={css.searchButton}>
+          Search
+        </button>
+      </div>
+
       {loading ? (
         <Hearts
           height="80"
@@ -58,9 +154,11 @@ const CatalogList = () => {
         />
       ) : (
         <ul ref={listRef} className={css.list}>
-          {cars?.map((car, index) => (
-            <CatalogItem key={`${car.id}-${index}`} car={car} />
-          ))}
+          {(filteredCars.length > 0 ? filteredCars : cars)?.map(
+            (car, index) => (
+              <CatalogItem key={`${car.id}-${index}`} car={car} />
+            )
+          )}
         </ul>
       )}
 

@@ -19,15 +19,3 @@ export const fetchCars = createAsyncThunk(
     }
   }
 );
-// export const fetchAllCars = createAsyncThunk(
-//   "cars/fetchAll",
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await backend.get("adverts");
-
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );

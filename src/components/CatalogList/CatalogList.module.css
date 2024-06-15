@@ -22,3 +22,27 @@
   margin: 0 auto;
   cursor: pointer;
 }
+.searchButton {
+  border-radius: 12px;
+  padding: 14px 44px;
+  width: 136px;
+  height: 48px;
+  background: #3470ff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.42857;
+  color: #fff;
+  display: block;
+}
+.filters {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+}
+.lable {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
