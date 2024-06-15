@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Icon from "../Icon/Icon";
+import Icon from "../../Icon/Icon";
 import { deleteCars } from "../../redux/catalog/slice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -8,7 +8,6 @@ import Modal from "../Modal/Modal";
 
 const FavoritesItem = ({ car }) => {
   const dispatch = useDispatch();
-  
 
   const [isOpen, setIsOpen] = useState(false);
   const [isAdd, setIsAdd] = useState(true);
@@ -21,7 +20,6 @@ const FavoritesItem = ({ car }) => {
   const deleteFavorites = (car) => {
     setIsAdd(!isAdd);
     dispatch(deleteCars(car));
-   
   };
   return (
     <>

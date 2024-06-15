@@ -1,11 +1,12 @@
 import { useState } from "react";
 import Modal from "../Modal/Modal";
 import css from "./CatalogItem.module.css";
-import Icon from "../Icon/Icon";
+
 import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
 import { addCars, deleteCars } from "../../redux/catalog/slice";
 import { selectFavorites } from "../../redux/catalog/selectors";
+import Icon from "../../Icon/Icon";
 
 const CatalogItem = ({ car }) => {
   const dispatch = useDispatch();
