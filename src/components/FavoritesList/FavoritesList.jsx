@@ -6,7 +6,6 @@ import FavoritesItem from "../FavoritesItem/FavoritesItem";
 
 const FavoritesList = () => {
   const favorites = useSelector(selectFavorites);
-  console.log(favorites);
 
   return (
     <>
