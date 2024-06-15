@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import css from "./FavoritesItem.module.css";
 import Modal from "../Modal/Modal";
-import { Icon } from "../../Icon/Icon";
+import { Icon } from "../Icon/Icon";
 
 const FavoritesItem = ({ car }) => {
   const dispatch = useDispatch();
