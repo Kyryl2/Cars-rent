@@ -4,7 +4,7 @@
   flex-direction: row;
   gap: 50px 29px;
   list-style-type: none;
-  padding: 128px;
+  padding: 40 128px;
   width: 1184px;
   margin: 0 auto;
 }
@@ -40,9 +40,59 @@
   display: flex;
   flex-direction: row;
   gap: 18px;
+  width: 750px;
+  margin: 0 auto;
+  padding: 50px;
+  align-items: end;
 }
 .lable {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+.mileageFilter {
+  display: flex;
+  flex-direction: row;
+}
+.inputFrom {
+  height: 46px;
+  border-right: 1px solid rgba(138, 138, 137, 0.2);
+  border-radius: 14px 0 0 14px;
+  width: 160px;
+  background: #f7f7fb;
+  border-left: none;
+  border-bottom: none;
+  border-top: none;
+}
+.inputTo {
+  height: 46px;
+  border-radius: 0 14px 14px 0;
+  width: 160px;
+
+  background: #f7f7fb;
+  border: none;
+}
+.select {
+  height: 48px;
+  border-radius: 14px;
+  padding: 14px 18px;
+  width: 125px;
+  height: 48px;
+  background: #f7f7fb;
+  border: none;
+}
+.selectMake {
+  height: 48px;
+  border-radius: 14px;
+  padding: 14px 89px 14px 18px;
+
+  background: #f7f7fb;
+  border: none;
+}
+.label {
+  margin-left: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  color: #8a8a89;
 }

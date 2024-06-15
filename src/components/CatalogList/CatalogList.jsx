@@ -86,8 +86,12 @@ const CatalogList = () => {
     <>
       <div className={css.filters}>
         <div className={css.lable}>
-          <label>Car brand</label>
-          <select value={selectedMake} onChange={handleMakeChange}>
+          <label className={css.label}>Car brand</label>
+          <select
+            value={selectedMake}
+            onChange={handleMakeChange}
+            className={css.selectMake}
+          >
             <option value="">All Makes</option>
             {uniqueMakes.map((make) => (
               <option key={make} value={make}>
@@ -98,43 +102,51 @@ const CatalogList = () => {
         </div>
 
         <div className={css.priceFilter}>
-          <label>Price/ 1 hour</label>
-          <select onChange={handlePriceRangeChange}>
-            <option value="">To $</option>
-            <option value="0-1000">$All</option>
-            <option value="0-10">$0 - $10</option>
-            <option value="10-20">$10 - $20</option>
-            <option value="20-30">$20 - $30</option>
-            <option value="30-40">$30 - $40</option>
-            <option value="40-50">$40 - $50</option>
-            <option value="50-60">$50 - $60</option>
-            <option value="60-70">$60 - $70</option>
-            <option value="70-80">$70 - $80</option>
-            <option value="80-90">$80 - $90</option>
-            <option value="90-100">$90 - $100</option>
-            <option value="100-1000">$100+</option>
-          </select>
+          <div className={css.lable}>
+            <label className={css.label}>Price/ 1 hour</label>
+            <select onChange={handlePriceRangeChange} className={css.select}>
+              <option value="">To $</option>
+              <option value="0-1000">$All</option>
+              <option value="0-10">$0 - $10</option>
+              <option value="10-20">$10 - $20</option>
+              <option value="20-30">$20 - $30</option>
+              <option value="30-40">$30 - $40</option>
+              <option value="40-50">$40 - $50</option>
+              <option value="50-60">$50 - $60</option>
+              <option value="60-70">$60 - $70</option>
+              <option value="70-80">$70 - $80</option>
+              <option value="80-90">$80 - $90</option>
+              <option value="90-100">$90 - $100</option>
+              <option value="100-1000">$100+</option>
+            </select>
+          </div>
         </div>
 
-        <div className={css.mileageFilter}>
-          <label>Mileage Range:</label>
-          <input
-            type="number"
-            data-index="0"
-            value={mileageRange[0]}
-            onChange={handleMileageRangeChange}
-            min="0"
-            step="1000"
-          />
-          <span> - </span>
-          <input
-            type="number"
-            data-index="1"
-            value={mileageRange[1]}
-            onChange={handleMileageRangeChange}
-            min="0"
-            step="1000"
-          />
+        <div>
+          <div className={css.lable}>
+            <label className={css.label}>Сar mileage / km</label>
+            <div className={css.mileageFilter}>
+              <input
+                type="number"
+                className={css.inputFrom}
+                data-index="0"
+                value={mileageRange[0]}
+                onChange={handleMileageRangeChange}
+                min="0"
+                step="1000"
+              />
+
+              <input
+                type="number"
+                data-index="1"
+                className={css.inputTo}
+                value={mileageRange[1]}
+                onChange={handleMileageRangeChange}
+                min="0"
+                step="1000"
+              />
+            </div>
+          </div>
         </div>
 
         <button onClick={handleSearch} className={css.searchButton}>
