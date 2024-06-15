@@ -12,6 +12,7 @@ const CatalogItem = ({ car }) => {
   const favorites = useSelector(selectFavorites);
 
   const [isOpen, setIsOpen] = useState(false);
+
   const [isFavorite, setIsFavorite] = useState(
     favorites.some((item) => item.id === car.id)
   );
@@ -60,7 +61,7 @@ const CatalogItem = ({ car }) => {
             <li className={css.infoItem}>{car.rentalCompany}</li>
             <li className={css.infoItem}>{car.type}</li>
             <li className={css.infoItem}>{car.model}</li>
-            <li className={css.infoItem}>{car.mileage}</li>
+            <li className={css.infoItem}>{car.id}</li>
           </ul>
         </div>
         <button className={css.btnLearnMore} onClick={handleOpenModal}>
@@ -111,7 +112,7 @@ const CatalogItem = ({ car }) => {
               <p>Rental Conditions: </p>
               <ul>
                 <li>{car.rentalConditions}</li>
-                <li>Mileage:{car.mileage}</li>
+                <li>Mileage:{car.mileage / 1000}</li>
                 <li>Price:{car.rentalPrice}</li>
               </ul>
             </div>

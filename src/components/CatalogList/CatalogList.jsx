@@ -7,15 +7,22 @@ import css from "./CatalogList.module.css";
 import { Hearts } from "react-loader-spinner";
 
 const CatalogList = () => {
-  const [page, setPage] = useState(2);
+  // Ініціалізація page з localStorage або значенням 2, якщо localStorage пустий
+  const [page, setPage] = useState(() => {
+    const savedPage = localStorage.getItem("page");
+    return savedPage ? Number(savedPage) : 1;
+  });
+
   const dispatch = useDispatch();
   const cars = useSelector(selectCars);
   const loading = useSelector(selectIsLoading);
   const listRef = useRef(null);
 
-  // useEffect(() => {
-  //   dispatch(fetchCars(page));
-  // }, [dispatch, page]);
+  useEffect(() => {
+    if (page === 1) {
+      dispatch(fetchCars(page));
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     if (page > 1) {
@@ -28,13 +35,17 @@ const CatalogList = () => {
   }, [cars]);
 
   const loadMore = () => {
-    dispatch(fetchCars(page));
-    setPage((prevPage) => prevPage + 1);
+    const newPage = page + 1;
+    setPage(newPage);
+    dispatch(fetchCars(newPage));
   };
+
+  useEffect(() => {
+    localStorage.setItem("page", page);
+  }, [page]);
 
   return (
     <>
-      {" "}
       {loading ? (
         <Hearts
           height="80"
@@ -52,9 +63,12 @@ const CatalogList = () => {
           ))}
         </ul>
       )}
-      <button onClick={loadMore} className={css.loadMoreButton}>
-        Load More
-      </button>
+
+      {page < 3 && (
+        <button onClick={loadMore} className={css.loadMoreButton}>
+          Load More
+        </button>
+      )}
     </>
   );
 };
