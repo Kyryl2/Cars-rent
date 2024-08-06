@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "../Modal/Modal";
 import css from "./CatalogItem.module.css";
-import icons from "../../components/icon.svg";
+import icons from "../../../src/components/icon.svg";
 
 import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
